@@ -21,9 +21,6 @@ from jupyter_packaging import (
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-
-
-
 # The name of the project
 name = 'ipydraw'
 
