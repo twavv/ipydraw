@@ -1,4 +1,4 @@
-name: Publish Python package to PyPI
+name: Publish
 on:
   push:
     tags:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish-pypi:
-    name: Build
+    name: Publish to PyPI
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -23,7 +23,7 @@ jobs:
         python -m pip install --upgrade pip wheel build jupyter-packaging
     - name: Build PyPI distributions
       run: |
-        python -m build
+        python -m build --no-isolation
     # The flattened python/js structure means that we also output .js files into
     # the dist/ directory, which makes twine/PyPI SCREAM. We don't need them for
     # publishing to PyPI so we just delete them here.

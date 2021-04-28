@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+cd $(dirname "$0")/..
+
+set -x
+if [ -z "$SKIP_BUILD" ]; then
+  python3 setup.py sdist bdist_wheel
+fi
+REPOSITORY=${REPOSITORY:-"https://upload.pypi.org/legacy/"}
+twine upload --repository-url "$REPOSITORY" ./dist/ipydraw*
