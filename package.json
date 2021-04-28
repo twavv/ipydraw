@@ -1,6 +1,6 @@
 {
   "name": "ipydraw",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "Simple canvas for ipywidgets",
   "keywords": [
     "jupyter",
@@ -13,6 +13,7 @@
     "dist/*.js",
     "css/*.css"
   ],
+  "unpkg": "dist/index.js",
   "homepage": "https://github.com/travigd/ipydraw",
   "bugs": {
     "url": "https://github.com/travigd/ipydraw/issues"

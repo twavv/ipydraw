@@ -1,0 +1,50 @@
+name: Publish Python package to PyPI
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  publish-pypi:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install NodeJS
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip wheel build
+    - name: Build PyPI distributions
+      run: |
+        python -m build
+    # The flattened python/js structure means that we also output .js files into
+    # the dist/ directory, which makes twine/PyPI SCREAM. We don't need them for
+    # publishing to PyPI so we just delete them here.
+    - name: Remove extra JS files
+      run: |
+        rm dist/*.js
+    - name: Publish a Python distribution to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
+  publish-npm:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - run: npm ci
+    - uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        check-version: false
