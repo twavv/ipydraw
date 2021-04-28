@@ -20,12 +20,43 @@ class Canvas(DOMWidget):
     _view_module = Unicode(module_name).tag(sync=True)
     _view_module_version = Unicode(module_version).tag(sync=True)
 
-    data = Unicode('data').tag(sync=True)
-    color = Bool('color').tag(sync=True)
-    size = Tuple(Int(200), Int(200)).tag(sync=True)
-    line_width = Int(20).tag(sync=True)
+    data = Unicode(
+        default_value="",
+        help=(
+            "The data URL of the image that has been drawn on the frontend. "
+            "This is usually of the format `data:image/png;base64,` followed "
+            "by a base64-encoded PNG image."
+        ),
+    ).tag(sync=True)
 
-    # Used to store data for the frontend, the data format is defined by the
-    # frontend code. This should NOT be considered part of the public API of
-    # the widget.
-    path = Any([]).tag(sync=True)
+    color = Bool(
+        default_value=False,
+        help=(
+            "If True, enabled drawing in a frontend-selected color; otherwise, "
+            "all strokes are drawn in black."
+        ),
+    ).tag(sync=True)
+
+    size = Tuple(
+        Int(), Int(),
+        default_value=(200, 200),
+        help=(
+            "The size in pixels of the canvas."
+        ),
+    ).tag(sync=True)
+
+    line_width = Int(
+        default_value=10,
+        help=(
+            "The width of strokes drawn on the canvas."
+        ),
+    ).tag(sync=True)
+
+    path = Any(
+        default_value=[],
+        help=(
+            "Used to store data for the frontend, the data format is defined "
+            "by the frontend code. This should NOT be considered part of the "
+            "public API of the widget."
+        ),
+    ).tag(sync=True)
