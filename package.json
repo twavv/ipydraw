@@ -1,6 +1,6 @@
 {
   "name": "ipydraw",
-  "version": "0.1.1-alpha.6",
+  "version": "0.1.1-alpha.7",
   "description": "Simple canvas for ipywidgets",
   "keywords": [
     "jupyter",
@@ -42,7 +42,7 @@
     "clean:nbextension": "rimraf ipydraw/nbextension/static/index.js",
     "lint": "eslint . --ext .ts,.tsx --fix",
     "lint:check": "eslint . --ext .ts,.tsx",
-    "prepack": "yarn run build:lib",
+    "prepack": "yarn run build:prod",
     "test": "jest",
     "watch": "npm-run-all -p watch:*",
     "watch:lib": "tsc -w",

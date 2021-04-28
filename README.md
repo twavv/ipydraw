@@ -131,3 +131,22 @@ After a change wait for the build to finish and then refresh your browser and th
 
 ### Python:
 If you make a change to the python code then you will need to restart the notebook kernel to have it take effect.
+
+# Publishing
+
+Tags are automatically published by CI.
+The version must be updated manually in the Python and JavaScript packages.
+Assuming you're publishing version `1.2.3` (or `1.2.3-alpha.4`):
+* Update `ipydraw/_version.py`
+  * For pre-releases, set `version_suffix` to `a4` (or empty for a non-pre-release).
+* Update `package.json`
+  * For pre-releases, use the `1.2.3-alpha.4` syntax.
+
+To push the tag:
+```
+VERSION="v1.2.3-alpha.4"
+git commit -m "$VERSION"
+git tag "$VERSION"
+git push
+git push --tags
+```
