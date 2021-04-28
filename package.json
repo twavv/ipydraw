@@ -1,6 +1,6 @@
 {
   "name": "ipydraw",
-  "version": "0.1.1-alpha.9",
+  "version": "0.1.1",
   "description": "Simple canvas for ipywidgets",
   "keywords": [
     "jupyter",
