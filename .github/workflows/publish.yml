@@ -32,7 +32,7 @@ jobs:
     # publishing to PyPI so we just delete them here.
     - name: Remove extra JS files
       run: |
-        rm dist/*.js
+        rm dist/*.js*
     - name: Publish a Python distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
