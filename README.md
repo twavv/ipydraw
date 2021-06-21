@@ -22,6 +22,11 @@ jupyter nbextension enable --py [--sys-prefix|--user|--system] ipydraw
 
 # Usage
 
+## Canvas
+
+Canvases can be used to draw an image using a pointing device (like a mouse) on
+the frontend.
+
 You can display the canvas in Jupyter frontends by creating a `Canvas` widget:
 ```python
 import ipydraw
@@ -35,7 +40,7 @@ print(canvas.data)
 # data:image/png;base64,...
 ```
 
-## Arguments
+### Arguments
 ```python
 # Default values shown below
 ipydraw.Canvas(
@@ -51,12 +56,12 @@ ipydraw.Canvas(
 )
 ```
 
-## Limitations
+### Limitations
 * It is not currently possible to set an initial image for the canvas.
 * The canvas only supports syncing from the frontend (browser) to the kernel (Python).
 * It is not possible to update any attributes (e.g., `size` or `line_width`) after the widget has been created.
 
-## Usage with Pillow
+### Usage with Pillow
 To load the canvas image into a Python Pillow `Image`, we need to parse the data URL
 (which is essentially a base64-encoded PNG image).
 
@@ -80,6 +85,41 @@ data_bin = base64.b64decode(data_encoded)
 # Read the image into a Pillow Image.
 # We use a BytesIO since Image.open expects a file-like object.
 image_from_canvas = Image.open(io.BytesIO(data_bin))
+```
+
+## Point Picker
+
+The point picker can be used to select points on an image.
+
+```python
+from PIL import Image
+import ipydraw
+
+# Create a PointPicker with a given background image
+bg = Image.open("some_image.jpeg")
+pp = ipydraw.PointPicker.for_image(bg, n_points=2)
+pp
+```
+
+To get the points after they've been selected:
+```python
+points = pp.get_points()
+# example: [[308, 400.734375], [427, 349.734375]]
+```
+
+### Arguments
+
+```python
+# Default values shown below
+ipydraw.PointPicker(
+    # The src of the image to use as the background. This is set automatically if you
+    # use the PointPicker.for_image(...) API. Otherwise, this must be set manually.
+    image_src="...",
+    
+    # The number of points that should be selected on the image. If set to None, there
+    # is no limit on the number of points.
+    n_points=False,
+)
 ```
 
 # Development Installation

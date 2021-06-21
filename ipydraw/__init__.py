@@ -5,6 +5,8 @@
 # Distributed under the terms of the Modified BSD License.
 
 from .canvas import Canvas
+from .pointpicker import PointPicker
+from .utils import *
 from ._version import __version__, version_info
 
 def _jupyter_labextension_paths():
