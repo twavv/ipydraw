@@ -25,7 +25,7 @@ def image_to_b64(img, format=None) -> T.Tuple[str, str]:
     if not possible).
     """
     img = load_image(img)
-    format = format or img.format.lower() or "jpeg"
+    format = format or (img.format and img.format.lower()) or "jpeg"
     buf = io.BytesIO()
     img.save(buf, format=format)
     return format, base64.b64encode(buf.getvalue()).decode()
