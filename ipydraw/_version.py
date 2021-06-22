@@ -9,6 +9,6 @@ version_info = (0, 1, 3)
 # For pre-release versions, use a7 format (for alpha.7)
 # For release versions, this should be empty.
 # MAKE SURE TO KEEP THIS IN SYNC WITH THE package.json FILE.
-version_suffix = ""
+version_suffix = "a1"
 
 __version__ = ".".join(map(str, version_info)) + version_suffix
