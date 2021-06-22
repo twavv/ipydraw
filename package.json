@@ -1,6 +1,6 @@
 {
   "name": "ipydraw",
-  "version": "0.1.4-alpha.0",
+  "version": "0.1.4-alpha.2",
   "description": "Simple canvas for ipywidgets",
   "keywords": [
     "jupyter",
@@ -21,7 +21,7 @@
   "license": "BSD-3-Clause",
   "author": {
     "name": "Travis DePrato",
-    "email": "travis@mynerva.io"
+    "email": "travis@pathbird.com"
   },
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
@@ -47,8 +47,7 @@
     "watch": "npm-run-all -p watch:*",
     "watch:lib": "tsc -w",
     "watch:nbextension": "webpack --watch --mode=development",
-    "watch:labextension": "jupyter labextension watch .",
-    "prepare": "husky install"
+    "watch:labextension": "jupyter labextension watch ."
   },
   "dependencies": {
     "@jupyter-widgets/base": "^1.1.10 || ^2.0.0 || ^3.0.0 || ^4.0.0"
