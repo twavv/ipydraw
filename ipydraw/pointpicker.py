@@ -26,7 +26,7 @@ class PointPicker(DOMWidget):
     _view_module_version = Unicode(module_version).tag(sync=True)
 
     @classmethod
-    def for_image(cls, img: T.Union["Image", str], format="jpeg", **kwargs):
+    def for_image(cls, img: T.Union["Image", str], format=None, **kwargs):
         return cls(
             image_src=image_to_dataurl(img, format),
             **kwargs,
